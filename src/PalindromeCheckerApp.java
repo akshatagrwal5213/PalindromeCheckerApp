@@ -26,7 +26,6 @@ public class PalindromeCheckerApp {
         }
         return head;
     }
-
     private static Node reverse(Node head) {
         Node prev = null, current = head, next;
         while (current != null) {
