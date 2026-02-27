@@ -1,29 +1,33 @@
 
-
 import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    public static boolean isPalindromeRecursive(String word, int left, int right) {
-        if (left >= right) {
-            return true;
-        }
-        if (word.charAt(left) != word.charAt(right)) {
-            return false;
-        }
-        return isPalindromeRecursive(word, left + 1, right - 1); // Recursive call
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a word to check: ");
-        String word = scanner.nextLine();
+        System.out.print("Enter a sentence or word to check: ");
+        String input = scanner.nextLine();
 
-        if (isPalindromeRecursive(word, 0, word.length() - 1)) {
-            System.out.println(word + " is a palindrome.");
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+                int left = 0;
+        int right = normalized.length() - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        if (isPalindrome) {
+            System.out.println("\"" + input + "\" is a palindrome (ignoring case and spaces).");
         } else {
-            System.out.println(word + " is not a palindrome.");
+            System.out.println("\"" + input + "\" is not a palindrome (ignoring case and spaces).");
         }
 
         scanner.close();
